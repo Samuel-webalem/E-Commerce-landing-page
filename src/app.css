@@ -1,0 +1,10 @@
+#parent{
+    border: 3px solid  hsl(26, 100%, 55%);
+    border-radius: 13px;
+}
+#child{
+    opacity: 0.5;
+}
+#child2{
+    opacity: 1;
+}
