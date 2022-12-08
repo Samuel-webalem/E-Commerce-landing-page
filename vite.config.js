@@ -3,5 +3,7 @@ import { svelte } from '@sveltejs/vite-plugin-svelte'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [svelte()]
+  base:"/E-Commerce-Product-page/",
+  plugins: [svelte()],
+  assetsInclude: ['**/*.jpg']
 })

@@ -22,7 +22,7 @@
   {#if displayer}
     <div class="discription">
       <div class="disc2">
-        <img src="src\assets\image-product-1-thumbnail.jpg" alt="" />
+        <img src="public\image-product-1-thumbnail.jpg" alt="" />
         <div class="text">
           <h4>Fall Limited Edition Sneakers</h4>
           <p class="price">${price} x {quantitys} <strong>${totalprice}.00</strong></p>

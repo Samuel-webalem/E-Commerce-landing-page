@@ -3,27 +3,30 @@
   const images = [
     {
       id: 0,
-      imgurl: "./src/assets/image-product-1.jpg",
+      imgurl: "public/image-product-1.jpg",
     },
     {
       id: 1,
-      imgurl: "./src/assets/image-product-2.jpg",
+      imgurl: "public/image-product-2.jpg",
     },
     {
       id: 2,
-      imgurl: "./src/assets/image-product-3.jpg",
+      imgurl: "public/image-product-3.jpg",
     },
     {
       id: 3,
-      imgurl: "./src/assets/image-product-4.jpg",
+      imgurl: "public/image-product-4.jpg",
     },
   ];
   export let main;
   let a =false;
+  let currentimg;
+  export let currentid;
   let dispach = createEventDispatcher();
   function view(event) {
     let current = event.target.className.charAt(0);
         main = images[current].imgurl;
+        currentimg=images[current].id;
         let sec = document.querySelectorAll('section img')
     sec.forEach(element => {
       element.id='child2';
@@ -34,25 +37,26 @@
     event.target.id='child';
   }
   function next(){
-     console.log(Object(main).charAt(27)-1)
-     let jump = Object(main).charAt(27)-1;
-     if(jump>images.length-2){
-      jump=0;
-      main=images[jump].imgurl
+     if(currentid===images.length-1){
+      currentid=0;
+      main=images[currentid].imgurl
      }
      else{
-        main=images[jump+1].imgurl
+      currentid++;
+        main=images[currentid].imgurl
+      console.log(currentid)
      }
   }
   function previous(){
-     console.log(Object(main).charAt(27)-1)
-     let jump = Object(main).charAt(27)-1;
-     if(jump===0){
-      jump=images.length;
-      main=images[jump-1].imgurl
+     if(currentid===0){
+      currentid=images.length;
+      currentid--;
+      main=images[currentid].imgurl
+      
      }
      else{
-        main=images[jump-1].imgurl
+        currentid--;
+        main=images[currentid].imgurl
      }
   }
   
@@ -113,21 +117,21 @@
     </div>
     <div class="thumbnail">
       <section class="sec"><img
-        src="src\assets\image-product-1-thumbnail.jpg"
+        src="public\image-product-1-thumbnail.jpg"
         id="opp"
         class="0"
         on:click="{view}"
         alt=""
       /></section>
       <section class="sec"><img
-        src="src\assets\image-product-2-thumbnail.jpg"
+        src="public\image-product-2-thumbnail.jpg"
         id="opp"
         class="1"
         on:click="{view}"
         alt=""
       /></section>
       <section class="sec"><img
-        src="src\assets\image-product-3-thumbnail.jpg"
+        src="public\image-product-3-thumbnail.jpg"
         id="opp"
         class="2"
         on:click="{view}"
@@ -135,7 +139,7 @@
       /></section>
       <section class="sec">
       <img
-        src="src\assets\image-product-4-thumbnail.jpg"
+        src="public\image-product-4-thumbnail.jpg"
         id="opp"
         class="3"
         on:click="{view}"

@@ -4,23 +4,24 @@
   import { createEventDispatcher } from "svelte";
   let dispach = createEventDispatcher();
   let displayer = false;
+  let containerid=0;
   let displayer2 = false;
   export const images = [
     {
       id: 0,
-      imgurl: "./src/assets/image-product-1.jpg",
+      imgurl: "./public/image-product-1.jpg",
     },
     {
       id: 1,
-      imgurl: "./src/assets/image-product-2.jpg",
+      imgurl: "./public/image-product-2.jpg",
     },
     {
       id: 2,
-      imgurl: "./src/assets/image-product-3.jpg",
+      imgurl: "./public/image-product-3.jpg",
     },
     {
       id: 3,
-      imgurl: "./src/assets/image-product-4.jpg",
+      imgurl: "./public/image-product-4.jpg",
     },
   ];
 
@@ -37,6 +38,7 @@
     event.target.parentNode.id = "parent";
     event.target.id = "child";
     main = images[current].imgurl;
+    containerid=images[current].id;
     currentpic = event.target.className.charAt(0);
   }
 
@@ -58,20 +60,23 @@
      if(jump>images.length-2){
       jump=0;
       main=images[jump].imgurl
+       containerid=images[jump].id;
      }
      else{
         main=images[jump+1].imgurl
+         containerid=images[jump+1].id;
      }
   }
   function previous(){
-     console.log(Object(main).charAt(27)-1)
      let jump = Object(main).charAt(27)-1;
      if(jump===0){
       jump=images.length;
       main=images[jump-1].imgurl
+       containerid=images[jump-1].id;
      }
      else{
-        main=images[jump-1].imgurl
+        main=images[jump-1].imgurl;
+         containerid=images[jump-1].id;
      }}
 </script>
 
@@ -83,10 +88,7 @@
       class="main-img"
       src="{main}"
       alt=""
-      on:click="{() => {
-        displayer = true;
-      }}"
-    />
+      on:click={() => {displayer=true}}>
     <div class="slide">
     <svg
         class="prev"
@@ -117,7 +119,7 @@
     <div class="thumbnail">
       <section class="sec">
         <img
-          src="src\assets\image-product-1-thumbnail.jpg"
+          src="public\image-product-1-thumbnail.jpg"
           id="opp"
           class="0"
           on:click="{view}"
@@ -126,7 +128,7 @@
       </section>
       <section class="sec">
         <img
-          src="src\assets\image-product-2-thumbnail.jpg"
+          src="public\image-product-2-thumbnail.jpg"
           id="opp"
           class="1"
           on:click="{view}"
@@ -135,7 +137,7 @@
       </section>
       <section class="sec">
         <img
-          src="src\assets\image-product-3-thumbnail.jpg"
+          src="public\image-product-3-thumbnail.jpg"
           id="opp"
           class="2"
           on:click="{view}"
@@ -144,7 +146,7 @@
       </section>
       <section class="sec">
         <img
-          src="src\assets\image-product-4-thumbnail.jpg"
+          src="public\image-product-4-thumbnail.jpg"
           id="opp"
           class="3"
           on:click="{view}"
@@ -170,7 +172,7 @@
       <div class="operation">
         <div class="adj">
           <img
-            src="src\assets\icon-minus.svg"
+            src="public\icon-minus.svg"
             id="minus"
             on:click="{() => {
               dispach('minus');
@@ -179,7 +181,7 @@
           />
           <h3>{starter}</h3>
           <img
-            src="src\assets\icon-plus.svg"
+            src="public\icon-plus.svg"
             id="plus"
             on:click="{() => {
               dispach('plus');
@@ -203,7 +205,7 @@
   </div>
 </main>
 {#if displayer}
-  <Slider main="{main}" on:cancle="{backdrop}" />
+  <Slider main="{main}" on:cancle="{backdrop}" currentid={containerid}/>
 {/if}
 
 <style>

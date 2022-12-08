@@ -67,7 +67,7 @@ import Cart from "./cart.svelte";
     {#if displayer2 && piner}
       <p class="pin">{incriment}</p>
     {/if}
-    <img src="./src\assets\image-avatar.png" alt="" class="avatar" />
+    <img src="./public\image-avatar.png" alt="" class="avatar" />
   </div>
 </header>
 
